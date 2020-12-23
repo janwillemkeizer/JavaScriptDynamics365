@@ -1,5 +1,8 @@
 /*
 This script validates a specified field by checking if the entered date is a date in the future.
+
+Information on how to implement this script can be found on:
+https://docs.microsoft.com/en-us/powerapps/developer/model-driven-apps/clientapi/walkthrough-write-your-first-client-script
 */
 
 var Sdk = window.Sdk || {};
