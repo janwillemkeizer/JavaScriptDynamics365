@@ -6,26 +6,23 @@ https://docs.microsoft.com/en-us/powerapps/developer/model-driven-apps/clientapi
 */
 
 var Sdk = window.Sdk || {};
-(function () {
-    
-    // Define global variables    
-    var formField = ""; // example: xyz_customfieldname 
+
+(function() {
+	var formField = ""; // example: xyz_customfieldname 
     var message = "Your message to the user.";
     var today = new Date();
-    
-    // Code to run in the attribute OnChange event
-    this.attributeOnChange = function (executionContext) {
-        var formContext = executionContext.getFormContext();
-        var suppliedDateField = formContext.getAttribute("formField");
-        
-        if (suppliedDateField != null) {
-            var suppliedDate = formContext.getAttribute("formField").getValue();
-            var suppliedDateFieldControl = formContext.getControl("formField");
-            if (suppliedDate <= today) {
-                suppliedDateFieldControl.setNotification(message, "notificationFutureDate");
-            } else {
-                suppliedDateFieldControl.clearNotification("notificationFutureDate");
-            }
-        }
-    }
+	
+	this.attributeOnChange = function(executionContext) {
+		var formContext = executionContext.getFormContext();
+		var suppliedDateFieldControl = formContext.getControl(formField);
+		var suppliedDate = formContext.getAttribute(formField).getValue();
+
+		if (suppliedDate !== null) {
+			if (suppliedDate <= today) {
+				suppliedDateFieldControl.setNotification(message, "notificationFutureDate");
+			}
+		} else {
+				suppliedDateFieldControl.clearNotification("notificationFutureDate");
+			}
+	};
 }).call(Sdk);
