@@ -17,7 +17,7 @@ var Sdk = window.Sdk || {};
 		var suppliedDateFieldControl = formContext.getControl(formField);
 		var suppliedDate = formContext.getAttribute(formField).getValue();
 
-		if (suppliedDate !== null) {
+		if (suppliedDate) {
 			if (suppliedDate <= today) {
 				suppliedDateFieldControl.setNotification(message, "notificationFutureDate");
 			}
